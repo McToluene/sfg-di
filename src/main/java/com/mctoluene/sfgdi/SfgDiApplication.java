@@ -1,9 +1,6 @@
 package com.mctoluene.sfgdi;
 
-import com.mctoluene.sfgdi.controllers.ConstructorInjectedController;
-import com.mctoluene.sfgdi.controllers.MyController;
-import com.mctoluene.sfgdi.controllers.PropertyInjectedController;
-import com.mctoluene.sfgdi.controllers.SetterInjectedController;
+import com.mctoluene.sfgdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,9 +10,13 @@ public class SfgDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SfgDiApplication.class, args);
+
+		I18nController i18nController = (I18nController) context.getBean("i18nController");
+		System.out.println(i18nController.sayGreeting());
+
+		System.out.println("My......");
 		MyController myController = (MyController) context.getBean("myController");
-		String greeting = myController.sayHello();
-		System.out.println(greeting);
+		System.out.println(myController.sayHello());
 
 		System.out.println("Property......");
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) context.getBean("propertyInjectedController");
